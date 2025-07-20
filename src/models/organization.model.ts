@@ -1,0 +1,101 @@
+import {
+    Table,
+    Model,
+    Column,
+    DataType,
+    HasMany,
+    CreatedAt,
+    UpdatedAt,
+  } from 'sequelize-typescript';
+  import User from './user.model';
+//   import Department from './department.model';
+  
+  @Table({
+    tableName: 'organizations',
+    timestamps: true,
+  })
+  export default class Organization extends Model {
+    @Column({
+      type: DataType.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    })
+    id!: number;
+  
+    @Column({
+      type: DataType.STRING,
+      allowNull: false,
+      unique: true,
+    })
+    orgName!: string;
+  
+    @Column({
+      type: DataType.STRING,
+      allowNull: true,
+    })
+    ownerName!: string;
+  
+    @Column(DataType.STRING)
+    address?: string;
+  
+    @Column(DataType.STRING)
+    phone?: string;
+  
+    @Column({
+      type: DataType.STRING,
+      unique: true,
+    })
+    email?: string;
+  
+    @Column(DataType.STRING)
+    pinCode?: string;
+  
+    @Column(DataType.STRING)
+    panNo?: string;
+  
+    @Column(DataType.STRING)
+    taxNo?: string;
+  
+    @Column(DataType.DATE)
+    financialYearStart?: Date;
+  
+    @Column(DataType.DATE)
+    financialYearEnd?: Date;
+  
+    @Column(DataType.STRING)
+    country?: string;
+  
+    @Column(DataType.STRING)
+    state?: string;
+  
+    @Column(DataType.STRING)
+    bankName?: string;
+  
+    @Column(DataType.STRING)
+    accountNumber?: string;
+  
+    @Column(DataType.STRING)
+    branchName?: string;
+  
+    @Column(DataType.STRING)
+    ifscCode?: string;
+  
+    @Column({
+      type: DataType.BOOLEAN,
+      defaultValue: false,
+    })
+    enableGST!: boolean;
+  
+    @HasMany(() => User)
+    users!: User[];
+  
+    // @HasMany(() => Department)
+    // departments!: Department[];
+  
+    @CreatedAt
+    createdAt?: Date;
+  
+    @UpdatedAt
+    updatedAt?: Date;
+  }
+  

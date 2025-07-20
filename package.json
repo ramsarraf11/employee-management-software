@@ -1,10 +1,59 @@
 {
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/connect-flash": "^0.0.40",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/express-session": "^1.18.2",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/method-override": "^3.0.0",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^22.16.5",
+    "@types/nodemailer": "^6.4.17",
+    "@types/sequelize": "^4.28.20",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "build": "tsc && cp -r src/views dist/views",
+    "start": "node dist/server.js",
+    "migrate": "sequelize-cli db:migrate",
+    "migrate:undo": "sequelize-cli db:migrate:undo",
+    "seed": "sequelize-cli db:seed:all",
+    "seed:undo": "sequelize-cli db:seed:undo:all"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.7.0",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "express-validator": "^7.2.1",
+    "firebase-admin": "^13.4.0",
+    "helmet": "^8.1.0",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2",
+    "mysql2": "^3.14.2",
+    "nodemailer": "^7.0.5",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^6.37.7",
+    "sequelize-cli": "^6.6.3",
+    "sequelize-typescript": "^2.1.6",
+    "umzug": "^3.8.2"
+  },
   "name": "employee-management-system-backend",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "ecosystem.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ramsarraf11/employee-management-system-backend.git"
@@ -16,14 +65,5 @@
     "url": "https://github.com/ramsarraf11/employee-management-system-backend/issues"
   },
   "homepage": "https://github.com/ramsarraf11/employee-management-system-backend#readme",
-  "description": "",
-  "dependencies": {
-    "express": "^5.1.0"
-  },
-  "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.0.13",
-    "ts-node-dev": "^2.0.0",
-    "typescript": "^5.8.3"
-  }
+  "description": ""
 }
