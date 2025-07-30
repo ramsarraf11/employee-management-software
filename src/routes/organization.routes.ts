@@ -10,8 +10,8 @@ import { authenticate } from '../middlewares/auth.middleware';
 
 const organizationRoutes = Router();
 
-organizationRoutes.post('/', authenticate, createOrganization);
-organizationRoutes.get('/', authenticate, getAllOrganizations);
+organizationRoutes.post('/', createOrganization);
+organizationRoutes.get('/', getAllOrganizations);
 organizationRoutes.get('/:id', authenticate, getOrganizationById);
 organizationRoutes.put('/:id', authenticate, updateOrganization);
 organizationRoutes.delete('/:id', authenticate, deleteOrganization);
