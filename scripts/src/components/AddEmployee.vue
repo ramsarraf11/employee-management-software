@@ -1,4 +1,5 @@
 <template>
+  <button @click="backToEmployees">Back to Employes</button>
   <div class="add-employee-form">
     <h2>Add New Employee</h2>
     <form @submit.prevent="submitForm">
@@ -68,6 +69,10 @@ const getInputType = (key: string) => {
   if (key.includes('email')) return 'email';
   if (typeof form.value[key as keyof typeof form.value] === 'number') return 'number';
   return 'text';
+};
+
+const backToEmployees = () => {
+  router.push('/login');
 };
 
 // Convert camelCase to Label

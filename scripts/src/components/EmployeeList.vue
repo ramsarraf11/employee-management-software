@@ -21,8 +21,10 @@
 import { ref, onMounted } from 'vue';
 const props = defineProps<{ employees: Array<any> }>();
 
+
 onMounted(() => {
   // This component does not need to do anything on mount
   console.log('EmployeeList component mounted', props.employees);
 });
+
 </script>

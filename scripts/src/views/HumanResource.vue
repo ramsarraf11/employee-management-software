@@ -1,5 +1,5 @@
 <template>
-  <div  v-if="!isadd">
+     <div  v-if="!isadd">
     <h2>Employees</h2>
     <EmployeeList :employees="employees" />
     <button @click="logout">Logout</button>
@@ -9,14 +9,13 @@
       @employeeAdded="onEmployeeAdded" 
     />
 </template>
-
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { fetchEmployees } from '../api';
+
 import EmployeeList from '../components/EmployeeList.vue';
 import AddEmployee from '../components/AddEmployee.vue';
-
 const employees = ref([]);
 const router = useRouter();
 const isadd = ref(false);
@@ -51,4 +50,5 @@ const onEmployeeAdded = () => {
 };
 
 onMounted(loadEmployees);
+
 </script>

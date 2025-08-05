@@ -40,12 +40,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref,defineEmits } from 'vue';
 import { useRouter } from 'vue-router';
 import { addOrganization } from '../api';
 
 const router = useRouter();
 const message = ref('');
+const emit = defineEmits(['organizationAdded']); 
 
 const form = ref({
   orgName: '',
@@ -75,6 +76,7 @@ const submitForm = async () => {
 
     await addOrganization(form.value);
     message.value = 'Organization added successfully!';
+    emit('organizationAdded');
     // Optional: Reset form here if needed
   } catch (err) {
     console.error(err);
