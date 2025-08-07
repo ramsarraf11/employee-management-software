@@ -4,6 +4,7 @@ import organizationRoutes from './organization.routes';
 import authRoutes from './auth.routes';
 import userRoutes from './user.routes';
 import employeeRoutes from './employee.routes';
+import attendanceRoutes from './attendence.routes';
 // import departmentRoutes from './department.routes';
 // import designationRoutes from './designation.routes';
 // import leaveRoutes from './leave.routes';
@@ -34,6 +35,7 @@ export const initializeRoutes = (app: any): void => {
     // app.use(`/shifts`, shiftRoutes);
     // app.use(`/teachers`, teacherRoutes);
     // app.use('/fees', feeRoutes);
+    app.use(`/attendance`, attendanceRoutes);
 };
 
 export default router;

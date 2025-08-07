@@ -1,5 +1,7 @@
 import Employee from '../models/employee.model';
+import { Op } from 'sequelize';
 
+/////////////////////////////
 export const createEmployee = async (data: Partial<Employee>) => {
   return await Employee.create(data);
 };
@@ -20,8 +22,22 @@ export const deleteEmployee = async (id: number) => {
   return await employee.destroy();
 };
 
-export const searchEmployees = async (query: any) => {
+export const searchEmployees = async (query: { role?: any; name?: any }) => {
+  const whereClause: any = {};
+
+  if (query.role) {
+    whereClause.roleId = query.role;
+  }
+
+  if (query.name) {
+    // Search by firstName or lastName containing the name substring (case-insensitive)
+    whereClause[Op.or] = [
+      { firstName: { [Op.iLike]: `%${query.name}%` } },
+      { lastName: { [Op.iLike]: `%${query.name}%` } },
+    ];
+  }
+
   return await Employee.findAll({
-    where: query,
+    where: whereClause,
   });
 };

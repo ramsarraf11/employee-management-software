@@ -23,10 +23,10 @@ export const deleteEmployeeService = async (id: number) => {
   return await deleteEmployee(id);
 };
 
-export const searchEmployeesService = async (query: Partial<Employee>) => {
+export const searchEmployeesService = async (query: Partial<any>) => {
   return await searchEmployees(query);
 };
 
 export const getEmployeeByRoleIdOrName = async (roleId: any, name: any) => {
-  return await searchEmployees({ roleId, name });
+  return await searchEmployees({ role: roleId, name });
 }
