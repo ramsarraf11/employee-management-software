@@ -12,7 +12,7 @@ import { Logger } from '../utils/logger';
 
 /**
  * Create a new employee.
- */
+ *////
 export const createEmployee = async (req: Request, res: Response): Promise<void> => {
   try {
     const employee = await createEmployeeService(req.body);
