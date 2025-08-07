@@ -17,6 +17,8 @@ employeeRoutes.get('/:id', authenticate, getEmployeeById);
 employeeRoutes.put('/:id', authenticate, updateEmployee);
 employeeRoutes.delete('/:id', authenticate, deleteEmployee);
 employeeRoutes.get('/', authenticate, searchEmployees);
+// get by role
+employeeRoutes.get('/role/:roleId', authenticate, getEmployeeByRoleOrName);
 
 // search by roleId or name 
 // employeeRoutes.get('/search', authenticate, authorizeSchoolAdmin, getEmployeeByRoleOrName);

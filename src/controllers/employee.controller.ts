@@ -12,7 +12,7 @@ import { Logger } from '../utils/logger';
 
 /**
  * Create a new employee.
- */
+ *////
 export const createEmployee = async (req: Request, res: Response): Promise<void> => {
   try {
     const employee = await createEmployeeService(req.body);
@@ -84,7 +84,7 @@ export const searchEmployees = async (req: Request, res: Response): Promise<void
  */
 export const getEmployeeByRoleOrName = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { roleId, name } = req.query;
+    const { roleId, name } = req.params;
     if (!roleId && !name) {
       ResponseHandler.failure(req, res, 'Please provide either roleId or name', 400);
       return;

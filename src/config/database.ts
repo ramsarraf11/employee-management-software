@@ -44,22 +44,22 @@ const createDatabaseIfNotExists = async (): Promise<void> => {
 };
 
 // Function to run seeders
-// const runSeeders = async (): Promise<void> => {
+const runSeeders = async (): Promise<void> => {
 
-//   try {
-//     const seeder = new Umzug({
-//       migrations: { glob: 'src/seeders/*.js' },
-//       context: sequelize.getQueryInterface(),
-//       storage: new SequelizeStorage({ sequelize, tableName: 'SequelizeSeeders' }),
-//       logger: console,
-//     });
-//     await seeder.up();
-//     Logger.instance().log('Seeders executed successfully.');
-//   } catch (error) {
-//     console.error('Error running seeders:', error);
-//     process.exit(1);
-//   }
-// };
+  try {
+    const seeder = new Umzug({
+      migrations: { glob: 'src/seeders/*.js' },
+      context: sequelize.getQueryInterface(),
+      storage: new SequelizeStorage({ sequelize, tableName: 'SequelizeSeeders' }),
+      logger: console,
+    });
+    await seeder.up();
+    Logger.instance().log('Seeders executed successfully.');
+  } catch (error) {
+    console.error('Error running seeders:', error);
+    process.exit(1);
+  }
+};
 
 export const initializeDB = async (): Promise<void> => {
   try {
@@ -71,7 +71,7 @@ export const initializeDB = async (): Promise<void> => {
     await sequelize.sync({ alter: true });
     Logger.instance().log('All models were synchronized successfully.');
 
-    // await runSeeders();
+    await runSeeders();
   } catch (error) {
     Logger.instance().log(`Unable to initialize the database: ${error}`);
     process.exit(1);
