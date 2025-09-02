@@ -32,6 +32,6 @@ const searchEmployeesService = (query) => __awaiter(void 0, void 0, void 0, func
 });
 exports.searchEmployeesService = searchEmployeesService;
 const getEmployeeByRoleIdOrName = (roleId, name) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield (0, employee_repository_1.searchEmployees)({ roleId, name });
+    return yield (0, employee_repository_1.searchEmployees)({ role: roleId, name });
 });
 exports.getEmployeeByRoleIdOrName = getEmployeeByRoleIdOrName;

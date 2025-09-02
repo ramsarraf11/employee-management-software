@@ -10,6 +10,7 @@ const organization_routes_1 = __importDefault(require("./organization.routes"));
 const auth_routes_1 = __importDefault(require("./auth.routes"));
 const user_routes_1 = __importDefault(require("./user.routes"));
 const employee_routes_1 = __importDefault(require("./employee.routes"));
+const attendence_routes_1 = __importDefault(require("./attendence.routes"));
 // import departmentRoutes from './department.routes';
 // import designationRoutes from './designation.routes';
 // import leaveRoutes from './leave.routes';
@@ -38,6 +39,7 @@ const initializeRoutes = (app) => {
     // app.use(`/shifts`, shiftRoutes);
     // app.use(`/teachers`, teacherRoutes);
     // app.use('/fees', feeRoutes);
+    app.use(`/attendance`, attendence_routes_1.default);
 };
 exports.initializeRoutes = initializeRoutes;
 exports.default = router;

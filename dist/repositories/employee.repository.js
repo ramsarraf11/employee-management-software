@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.searchEmployees = exports.deleteEmployee = exports.updateEmployee = exports.getEmployeeById = exports.createEmployee = void 0;
 const employee_model_1 = __importDefault(require("../models/employee.model"));
+const sequelize_1 = require("sequelize");
+/////////////////////////////
 const createEmployee = (data) => __awaiter(void 0, void 0, void 0, function* () {
     return yield employee_model_1.default.create(data);
 });
@@ -37,8 +39,19 @@ const deleteEmployee = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.deleteEmployee = deleteEmployee;
 const searchEmployees = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const whereClause = {};
+    if (query.role) {
+        whereClause.roleId = query.role;
+    }
+    if (query.name) {
+        // Search by firstName or lastName containing the name substring (case-insensitive)
+        whereClause[sequelize_1.Op.or] = [
+            { firstName: { [sequelize_1.Op.iLike]: `%${query.name}%` } },
+            { lastName: { [sequelize_1.Op.iLike]: `%${query.name}%` } },
+        ];
+    }
     return yield employee_model_1.default.findAll({
-        where: query,
+        where: whereClause,
     });
 });
 exports.searchEmployees = searchEmployees;

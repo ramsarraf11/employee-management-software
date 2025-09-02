@@ -15,7 +15,7 @@ const response_handler_1 = require("../utils/response.handler");
 const logger_1 = require("../utils/logger");
 /**
  * Create a new employee.
- */
+ */ ///
 const createEmployee = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const employee = yield (0, employe_service_1.createEmployeeService)(req.body);
@@ -92,7 +92,7 @@ exports.searchEmployees = searchEmployees;
  */
 const getEmployeeByRoleOrName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { roleId, name } = req.query;
+        const { roleId, name } = req.params;
         if (!roleId && !name) {
             response_handler_1.ResponseHandler.failure(req, res, 'Please provide either roleId or name', 400);
             return;

@@ -30,7 +30,7 @@ const onLogin = async () => {
   error.value = ''
   try {
     const data = await login(email.value, password.value)
-    localStorage.setItem('token', data)
+    localStorage.setItem('token', data.token)
     router.push('/dashboard')
   } catch (e: any) {
     error.value = e.response?.data?.message || 'Login failed'

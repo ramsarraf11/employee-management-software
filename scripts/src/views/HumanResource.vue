@@ -8,6 +8,7 @@
      <AddEmployee v-if="isadd"
       @employeeAdded="onEmployeeAdded" 
     />
+    <Attendence />
 </template>
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
@@ -16,6 +17,7 @@ import { fetchEmployees } from '../api';
 
 import EmployeeList from '../components/EmployeeList.vue';
 import AddEmployee from '../components/AddEmployee.vue';
+import Attendence from '../components/Attendence.vue';
 const employees = ref([]);
 const router = useRouter();
 const isadd = ref(false);

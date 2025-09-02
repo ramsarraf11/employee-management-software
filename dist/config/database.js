@@ -17,6 +17,7 @@ const sequelize_typescript_1 = require("sequelize-typescript");
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
 const promise_1 = __importDefault(require("mysql2/promise"));
+const umzug_1 = require("umzug");
 const logger_1 = require("../utils/logger");
 // import { onboard }  from '../scripts/onboard-schools';
 dotenv_1.default.config();
@@ -53,21 +54,22 @@ const createDatabaseIfNotExists = () => __awaiter(void 0, void 0, void 0, functi
     }
 });
 // Function to run seeders
-// const runSeeders = async (): Promise<void> => {
-//   try {
-//     const seeder = new Umzug({
-//       migrations: { glob: 'src/seeders/*.js' },
-//       context: sequelize.getQueryInterface(),
-//       storage: new SequelizeStorage({ sequelize, tableName: 'SequelizeSeeders' }),
-//       logger: console,
-//     });
-//     await seeder.up();
-//     Logger.instance().log('Seeders executed successfully.');
-//   } catch (error) {
-//     console.error('Error running seeders:', error);
-//     process.exit(1);
-//   }
-// };
+const runSeeders = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const seeder = new umzug_1.Umzug({
+            migrations: { glob: 'src/seeders/*.js' },
+            context: sequelize.getQueryInterface(),
+            storage: new umzug_1.SequelizeStorage({ sequelize, tableName: 'SequelizeSeeders' }),
+            logger: console,
+        });
+        yield seeder.up();
+        logger_1.Logger.instance().log('Seeders executed successfully.');
+    }
+    catch (error) {
+        console.error('Error running seeders:', error);
+        process.exit(1);
+    }
+});
 const initializeDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield createDatabaseIfNotExists();
@@ -75,7 +77,7 @@ const initializeDB = () => __awaiter(void 0, void 0, void 0, function* () {
         logger_1.Logger.instance().log('Database connection has been established successfully.');
         yield sequelize.sync({ alter: true });
         logger_1.Logger.instance().log('All models were synchronized successfully.');
-        // await runSeeders();
+        yield runSeeders();
     }
     catch (error) {
         logger_1.Logger.instance().log(`Unable to initialize the database: ${error}`);

@@ -10,6 +10,8 @@ employeeRoutes.get('/:id', auth_middleware_1.authenticate, employee_controller_1
 employeeRoutes.put('/:id', auth_middleware_1.authenticate, employee_controller_1.updateEmployee);
 employeeRoutes.delete('/:id', auth_middleware_1.authenticate, employee_controller_1.deleteEmployee);
 employeeRoutes.get('/', auth_middleware_1.authenticate, employee_controller_1.searchEmployees);
+// get by role
+employeeRoutes.get('/role/:roleId', auth_middleware_1.authenticate, employee_controller_1.getEmployeeByRoleOrName);
 // search by roleId or name 
 // employeeRoutes.get('/search', authenticate, authorizeSchoolAdmin, getEmployeeByRoleOrName);
 exports.default = employeeRoutes;
